@@ -1,4 +1,4 @@
-package main
+/* package main
 
 import (
 	"fmt"
@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	webservice := new(restful.WebService)
 	webservice.Route(webservice.GET("show").To(showData))
 	webservice.Route(webservice.GET("test").To(test))
@@ -26,3 +27,4 @@ func showData(req *restful.Request, resp *restful.Response) {
 func test(req *restful.Request, resp *restful.Response) {
 	io.WriteString(resp, "It's a test")
 }
+*/

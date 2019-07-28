@@ -1,1 +1,2 @@
 # GoDemo
+initialize

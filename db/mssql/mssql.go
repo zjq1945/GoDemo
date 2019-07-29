@@ -8,11 +8,7 @@ import (
 	"log"
 )
 
-func Test() {
-
-}
-
-func GetSimpleTest() string {
+func SimpleTest() string {
 
 	condb, err := sql.Open("mssql", "server=jackytest01.database.windows.net;user id=jacky;password=zaq1xsw2CDE#")
 	if err != nil {

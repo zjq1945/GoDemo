@@ -1,10 +1,10 @@
 package main
 
 import "fmt"
-import "demo/restapi/gin"
+import "demo/db/mssql"
 
 func main() {
+	fmt.Println(mssql.SelectVersion())
+	fmt.Println("done")
 
-	fmt.Println("hello world!!!")
-	restapi.StartServices()
 }

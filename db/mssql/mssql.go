@@ -1,8 +1,10 @@
 package mssql
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
+	_ "github.com/denisenkom/go-mssqldb"
 	"log"
 )
 
@@ -49,13 +51,10 @@ func SelectVersion() string {
 	var (
 		sqlversion string
 	)
-
-	rows, err := condb.Query("select @@version")
+	ctx := context.Background()
+	err = condb.QueryRowContext(ctx, "select @@version").Scan(&sqlversion)
 	if err != nil {
 		fmt.Println(err)
-	}
-	for rows.Next() {
-		rows.Scan(&sqlversion)
 	}
 
 	return sqlversion

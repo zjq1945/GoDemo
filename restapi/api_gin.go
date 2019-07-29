@@ -1,4 +1,4 @@
-package RestApi
+package ginapi
 
 import "github.com/gin-gonic/gin"
 

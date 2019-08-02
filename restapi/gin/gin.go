@@ -3,7 +3,7 @@ package restapi
 import "github.com/gin-gonic/gin"
 import "time"
 
-func StartServices() {
+func StartTest01Services() {
 	serviceHost := gin.Default()
 
 	serviceHost.GET("/GetTimeNow", func(c *gin.Context) {

@@ -2,7 +2,7 @@ package main
 
 import (
 	//"demo/servicecall"
-	//"demo/restapi/gin"
+	"demo/restapi/gin"
 	"fmt"
 )
 
@@ -18,7 +18,7 @@ func main() {
 	//test for operating on a mysql
 
 	//test for hosting a restful api service (Gin)
-	//restapi.StartServices()
+	//restapi.StartTest01Services()
 
 	//test for get settings from config file
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	//"demo/servicecall"
-	"demo/restapi/gin"
+	//"demo/restapi/gin"
 	"fmt"
 )
 

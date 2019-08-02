@@ -12,7 +12,7 @@ func SimpleTest() string {
 
 	condb, err := sql.Open("mssql", "server=jackytest01.database.windows.net;user id=jacky;password=zaq1xsw2CDE#")
 	if err != nil {
-		fmt.Println("error")
+		fmt.Println("error", err)
 	}
 
 	defer condb.Close()

@@ -3,6 +3,7 @@ package main
 import (
 	//"demo/servicecall"
 	//"demo/restapi/gin"
+	//"demo/db/mssql"
 	"fmt"
 )
 
@@ -14,6 +15,7 @@ func main() {
 	//servicecall.GetResponse()
 
 	//test for operating on a mssql
+	//mssql.DisplayVersion()
 
 	//test for operating on a mssql with gorm
 

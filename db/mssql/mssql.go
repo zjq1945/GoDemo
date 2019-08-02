@@ -35,7 +35,7 @@ func SimpleTest() string {
 	return "Jacky"
 }
 
-func SelectVersion() string {
+func DisplayVersion() {
 
 	condb, err := sql.Open("mssql", "server=jackytest01.database.windows.net;user id=jacky;password=zaq1xsw2CDE#")
 	if err != nil {
@@ -53,5 +53,5 @@ func SelectVersion() string {
 		fmt.Println(err)
 	}
 
-	return sqlversion
+	fmt.Println(sqlversion)
 }

@@ -26,3 +26,30 @@ func InsertConsumer(consumer Consumer) {
 	}
 	fmt.Println("done to insert")
 }
+
+func GetConsumers() {
+	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	if err != nil {
+		fmt.Println("error to open:", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("select * from consumers")
+	if err != nil {
+		fmt.Println("error to select:", err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var id int
+		var name string
+		var age int
+		var location string
+		err = rows.Scan(&id, &name, &age, &location)
+		if err != nil {
+			fmt.Println("error to scan:", err)
+		}
+		fmt.Println(id, name, age, location)
+	}
+
+	fmt.Println("done in search")
+}

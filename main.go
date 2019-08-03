@@ -20,11 +20,12 @@ func main() {
 	//test for operating on a mssql with gorm
 
 	//test for operating on a mysql
-	var c jackymysql.Consumer
+	/*var c jackymysql.Consumer
 	c.Name = "Vincent"
 	c.Age = 36
 	c.Location = "HangZhou"
-	jackymysql.InsertConsumer(c)
+	jackymysql.InsertConsumer(c)*/
+	jackymysql.GetConsumers()
 
 	//test for operating on a myslq with gorm
 	//jackymysql.InsertUser("Jacky", "FO")

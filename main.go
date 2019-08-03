@@ -27,6 +27,12 @@ func main() {
 	c.Location = "HangZhou"
 	jackymysql.InsertConsumer(c)*/
 	//fmt.Println(jackymysql.GetConsumers())
+	// r, result := jackymysql.GetConsumer("Mary")
+	// if result {
+	// 	fmt.Println(r)
+	// } else {
+	// 	fmt.Println("not found")
+	// }
 
 	////test for operating on a myslq with gorm
 	//jackymysql.InsertUser("Jacky", "FO")

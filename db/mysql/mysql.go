@@ -53,3 +53,19 @@ func GetConsumers() []Consumer {
 	fmt.Println("done in search")
 	return rtn
 }
+
+func GetConsumer(consumerName string) (Consumer, bool) {
+	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	if err != nil {
+		fmt.Println("error to open:", err)
+	}
+	defer db.Close()
+	var rtn Consumer
+	err = db.QueryRow("select * from consumers where name=?", consumerName).Scan(&rtn.ID, &rtn.Name, &rtn.Age, &rtn.Location)
+	if err != nil {
+		fmt.Println("error to scan:", err)
+		return rtn, false
+	} else {
+		return rtn, true
+	}
+}

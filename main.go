@@ -24,8 +24,9 @@ func main() {
 	//test for operating on a mysql
 
 	//test for operating on a myslq with gorm
-	//jackymysql.InsertUser("Jacky", "BTS")
-	//jackymysql.UpdateUser("Jacky", "OE")
+	//jackymysql.InsertUser("Jacky", "FO")
+	//jackymysql.UpdateUser("Robert", "BTS")
+	//jackymysql.FindUsers()
 
 	//test for hosting a restful api service (Gin)
 	//restapi.StartTest01Services()

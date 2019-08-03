@@ -5,11 +5,9 @@ import (
 	//"demo/servicecall"
 	//"demo/restapi/gin"
 	//"demo/db/mssql"
-	//"demo/db/mysql"
+	"demo/db/mysql"
 	"fmt"
 )
-
-//import "demo/db/mssql"
 
 func main() {
 
@@ -22,6 +20,11 @@ func main() {
 	//test for operating on a mssql with gorm
 
 	//test for operating on a mysql
+	var c jackymysql.Consumer
+	c.Name = "Vincent"
+	c.Age = 36
+	c.Location = "HangZhou"
+	jackymysql.InsertConsumer(c)
 
 	//test for operating on a myslq with gorm
 	//jackymysql.InsertUser("Jacky", "FO")
@@ -35,6 +38,6 @@ func main() {
 
 	//demo
 
-	fmt.Println("done")
+	fmt.Println("done in main")
 
 }

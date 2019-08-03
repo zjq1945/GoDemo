@@ -27,7 +27,7 @@ func InsertConsumer(consumer Consumer) {
 	fmt.Println("done to insert")
 }
 
-func GetConsumers() {
+func GetConsumers() []Consumer {
 	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
 	if err != nil {
 		fmt.Println("error to open:", err)
@@ -39,15 +39,17 @@ func GetConsumers() {
 		fmt.Println("error to select:", err)
 	}
 	defer rows.Close()
+	var rtn []Consumer
 	for rows.Next() {
 		var c Consumer
-
 		err = rows.Scan(&c.ID, &c.Name, &c.Age, &c.Location)
 		if err != nil {
 			fmt.Println("error to scan:", err)
 		}
 		fmt.Println(c.ID, c.Name, c.Age, c.Location)
-	}
+		rtn = append(rtn, c)
 
+	}
 	fmt.Println("done in search")
+	return rtn
 }

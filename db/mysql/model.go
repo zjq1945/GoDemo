@@ -7,8 +7,8 @@ type Employee struct {
 }
 
 type Consumer struct {
-	ID       int
-	Name     string
-	Age      int
-	Location string
+	ID       int    `json:"ID"`
+	Name     string `json:"Name"`
+	Age      int    `json:"Age"`
+	Location string `json:"Location"`
 }

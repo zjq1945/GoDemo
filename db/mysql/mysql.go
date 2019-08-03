@@ -40,15 +40,13 @@ func GetConsumers() {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var id int
-		var name string
-		var age int
-		var location string
-		err = rows.Scan(&id, &name, &age, &location)
+		var c Consumer
+
+		err = rows.Scan(&c.ID, &c.Name, &c.Age, &c.Location)
 		if err != nil {
 			fmt.Println("error to scan:", err)
 		}
-		fmt.Println(id, name, age, location)
+		fmt.Println(c.ID, c.Name, c.Age, c.Location)
 	}
 
 	fmt.Println("done in search")

@@ -5,7 +5,7 @@ import (
 	//"demo/servicecall"
 	//"demo/restapi/gin"
 	//"demo/db/mssql"
-	"demo/db/mysql"
+	//"demo/db/mysql"
 	"fmt"
 )
 
@@ -25,7 +25,7 @@ func main() {
 	c.Age = 36
 	c.Location = "HangZhou"
 	jackymysql.InsertConsumer(c)*/
-	jackymysql.GetConsumers()
+	//jackymysql.GetConsumers()
 
 	//test for operating on a myslq with gorm
 	//jackymysql.InsertUser("Jacky", "FO")

@@ -3,7 +3,7 @@ package main
 import (
 
 	//"demo/servicecall"
-	//"demo/restapi/gin"
+	"demo/restapi/gin"
 	//"demo/db/mssql"
 	//"demo/db/mysql"
 	//"encoding/json"
@@ -53,7 +53,7 @@ func main() {
 	////test for get settings from config file
 
 	////demo
-	//restapi.StartDemoServices()
+	restapi.StartDemoServices()
 
 	fmt.Println("done in main")
 

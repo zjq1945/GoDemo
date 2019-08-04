@@ -1,11 +1,11 @@
 package restapi
 
 import (
-	"demo/db/mysql"
 	// "encoding/json"
-	//"fmt"
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"strings"
+	//"strings"
+	"demo/bizlayer"
 	"time"
 )
 
@@ -31,22 +31,44 @@ func StartDemoServices() {
 		})
 	})
 
-	serviceHost.GET("/Consumer/GetConsumers", func(c *gin.Context) {
-		consumers := jackymysql.GetConsumers()
+	serviceHost.GET("/Consumer/GetAll", func(c *gin.Context) {
+		consumers := consumer.GetAll()
 		c.JSON(200, consumers)
 	})
 
-	serviceHost.GET("/Consumer/GetConsumer/:optional", func(c *gin.Context) {
-		opt := c.Param("optional")
-		name := strings.Replace(opt, "/", "", 1)
-
-		consumer, result := jackymysql.GetConsumer(name)
+	serviceHost.GET("/Consumer/Get/:Name", func(c *gin.Context) {
+		opt := c.Param("Name")
+		consumer, result := consumer.Get(opt)
 
 		if result {
 			c.JSON(200, consumer)
 		} else {
-			c.JSON(200, "")
+			c.JSON(200, "not found")
 		}
+	})
+
+	serviceHost.DELETE("/Consumer/Delete/:Name", func(c *gin.Context) {
+		opt := c.Param("Name")
+		err := consumer.Delete(opt)
+		if err != nil {
+			c.JSON(200, "not found")
+		} else {
+			c.JSON(200, "Deleted")
+		}
+	})
+
+	serviceHost.POST("/Consumer/Insert", func(c *gin.Context) {
+		bodyByte, err := c.GetRawData()
+		if err != nil {
+			fmt.Println("err to get raw data", err)
+		}
+		err = consumer.Insert(bodyByte)
+		if err != nil {
+			c.JSON(500, err)
+		} else {
+			c.JSON(200, "inserted")
+		}
+
 	})
 
 	serviceHost.Run(":8080")

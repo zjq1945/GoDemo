@@ -3,7 +3,7 @@ package main
 import (
 
 	//"demo/servicecall"
-	"demo/restapi/gin"
+	//"demo/restapi/gin"
 	//"demo/db/mssql"
 	//"demo/db/mysql"
 	//"encoding/json"
@@ -21,11 +21,11 @@ func main() {
 	////test for operating on a mssql with gorm
 
 	////test for operating on a mysql
-	/*var c jackymysql.Consumer
-	c.Name = "Vincent"
-	c.Age = 36
-	c.Location = "HangZhou"
-	jackymysql.InsertConsumer(c)*/
+	// var c jackymysql.Consumer
+	// c.Name = "Vincent"
+	// c.Age = 36
+	// c.Location = "HangZhou"
+	// jackymysql.InsertConsumer(c)
 	//fmt.Println(jackymysql.GetConsumers())
 	// r, result := jackymysql.GetConsumer("Mary")
 	// if result {
@@ -33,6 +33,8 @@ func main() {
 	// } else {
 	// 	fmt.Println("not found")
 	// }
+	////delete a consumer
+	// jackymysql.DeleteConsumer("Vincent")
 
 	////test for operating on a myslq with gorm
 	//jackymysql.InsertUser("Jacky", "FO")
@@ -51,7 +53,7 @@ func main() {
 	////test for get settings from config file
 
 	////demo
-	restapi.StartDemoServices()
+	//restapi.StartDemoServices()
 
 	fmt.Println("done in main")
 

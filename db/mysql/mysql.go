@@ -27,6 +27,27 @@ func InsertConsumer(consumer Consumer) {
 	fmt.Println("done to insert")
 }
 
+func DeleteConsumer(consumerName string) {
+
+	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	if err != nil {
+		fmt.Println("error to open:", err)
+	}
+	defer db.Close()
+
+	stmtDel, err := db.Prepare("delete from consumers where Name = ?")
+	if err != nil {
+		fmt.Println("error to prepare:", err)
+	}
+	defer stmtDel.Close()
+
+	_, err = stmtDel.Exec(consumerName)
+	if err != nil {
+		fmt.Println("error to delete:", err)
+	}
+	fmt.Println("done to delete")
+}
+
 func GetConsumers() []Consumer {
 	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
 	if err != nil {

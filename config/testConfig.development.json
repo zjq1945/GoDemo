@@ -1,0 +1,3 @@
+{
+    "ConsumerConnectionString": "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true"
+}

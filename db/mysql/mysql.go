@@ -2,13 +2,14 @@ package jackymysql
 
 import (
 	"database/sql"
+	"demo/utility"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func InsertConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -33,7 +34,7 @@ func InsertConsumer(consumer Consumer) error {
 
 func UpdateConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -58,7 +59,7 @@ func UpdateConsumer(consumer Consumer) error {
 
 func DeleteConsumer(consumerName string) {
 
-	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -78,7 +79,7 @@ func DeleteConsumer(consumerName string) {
 }
 
 func GetConsumers() []Consumer {
-	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -105,7 +106,7 @@ func GetConsumers() []Consumer {
 }
 
 func GetConsumer(consumerName string) (Consumer, bool) {
-	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}

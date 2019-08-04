@@ -7,6 +7,7 @@ import (
 	//"demo/db/mssql"
 	//"demo/db/mysql"
 	//"encoding/json"
+	//"demo/utility"
 	"fmt"
 )
 
@@ -51,6 +52,7 @@ func main() {
 	//restapi.StartTest01Services()
 
 	////test for get settings from config file
+	//fmt.Println(utility.GetMySqlConnectionString())
 
 	////demo
 	restapi.StartDemoServices()

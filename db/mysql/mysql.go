@@ -5,11 +5,29 @@ import (
 	"demo/utility"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	//"github.com/patrickmn/go-cache"
 )
+
+var conn *connectionStrings
+
+type connectionStrings struct {
+	dbo string
+}
+
+func getDboConnectionString() string {
+	if conn == nil {
+		fmt.Println("conn is nil")
+		conn = &connectionStrings{dbo: utility.GetMySqlConnectionString()}
+		return conn.dbo
+	} else {
+		fmt.Println("conn is not nil")
+		return conn.dbo
+	}
+}
 
 func InsertConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
+	db, err := sql.Open("mysql", getDboConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -34,7 +52,7 @@ func InsertConsumer(consumer Consumer) error {
 
 func UpdateConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
+	db, err := sql.Open("mysql", getDboConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -59,7 +77,7 @@ func UpdateConsumer(consumer Consumer) error {
 
 func DeleteConsumer(consumerName string) {
 
-	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
+	db, err := sql.Open("mysql", getDboConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -79,7 +97,7 @@ func DeleteConsumer(consumerName string) {
 }
 
 func GetConsumers() []Consumer {
-	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
+	db, err := sql.Open("mysql", getDboConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -106,7 +124,7 @@ func GetConsumers() []Consumer {
 }
 
 func GetConsumer(consumerName string) (Consumer, bool) {
-	db, err := sql.Open("mysql", utility.GetMySqlConnectionString())
+	db, err := sql.Open("mysql", getDboConnectionString())
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}

@@ -31,6 +31,31 @@ func InsertConsumer(consumer Consumer) error {
 	return nil
 }
 
+func UpdateConsumer(consumer Consumer) error {
+
+	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")
+	if err != nil {
+		fmt.Println("error to open:", err)
+		return err
+	}
+	defer db.Close()
+
+	stmtUpdt, err := db.Prepare("update consumers set Name=?,Age=?,Location=? where ID = ?")
+	if err != nil {
+		fmt.Println("error to prepare:", err)
+		return err
+	}
+	defer stmtUpdt.Close()
+
+	_, err = stmtUpdt.Exec(consumer.Name, consumer.Age, consumer.Location, consumer.ID)
+	if err != nil {
+		fmt.Println("error to update:", err)
+		return err
+	}
+	fmt.Println("done to update")
+	return nil
+}
+
 func DeleteConsumer(consumerName string) {
 
 	db, err := sql.Open("mysql", "jacky@mysql-test02:zaq1xsw2CDE#@tcp(mysql-test02.mysql.database.azure.com:3306)/dbo?parseTime=true")

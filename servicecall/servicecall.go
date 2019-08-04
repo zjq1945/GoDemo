@@ -1,18 +1,32 @@
 package servicecall
 
 import (
-	//"encoding/json"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-func GetResponse() {
+func GetResponse() ([]Goods, error) {
 	response, err := http.Get("http://testapi01.azurewebsites.net/api/hello")
 	if err != nil {
 		fmt.Println("The http request failed with error %s\n", err)
+		return nil, errors.New("got an error in the service call")
 	} else {
-		data, _ := ioutil.ReadAll(response.Body)
-		fmt.Println(string(data))
+		body, err := ioutil.ReadAll(response.Body)
+		if err != nil {
+			fmt.Println("error read body", err)
+			return nil, err
+		} else {
+			var goodsList []Goods
+			err := json.Unmarshal(body, &goodsList)
+			if err != nil {
+				fmt.Println("error in unmarshal Goods", err)
+				return nil, err
+			} else {
+				return goodsList, nil
+			}
+		}
 	}
 }

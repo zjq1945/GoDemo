@@ -68,7 +68,28 @@ func StartDemoServices() {
 		} else {
 			c.JSON(200, "inserted")
 		}
+	})
 
+	serviceHost.PUT("/Consumer/Update", func(c *gin.Context) {
+		bodyByte, err := c.GetRawData()
+		if err != nil {
+			fmt.Println("err to get raw data", err)
+		}
+		err = consumer.Update(bodyByte)
+		if err != nil {
+			c.JSON(500, err)
+		} else {
+			c.JSON(200, "updated")
+		}
+	})
+
+	serviceHost.GET("/Consumer/GetResponseFromOtherService", func(c *gin.Context) {
+		result, err := consumer.GetResponseFromOutsideService()
+		if err != nil {
+			c.JSON(500, "internal error")
+		} else {
+			c.JSON(200, result)
+		}
 	})
 
 	serviceHost.Run(":8080")

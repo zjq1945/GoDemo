@@ -6,6 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	//"strings"
 	"demo/bizlayer"
+	"demo/utility"
+	"net/http"
 	"time"
 )
 
@@ -24,6 +26,9 @@ func StartTest01Services() {
 
 func StartDemoServices() {
 	serviceHost := gin.Default()
+
+	serviceHost.Use(middlewareHandlerLog)
+	serviceHost.Use(midllewareHandlerAthentication)
 
 	serviceHost.GET("/Demo/GetTimeNow", func(c *gin.Context) {
 		c.JSON(200, gin.H{
@@ -94,4 +99,18 @@ func StartDemoServices() {
 
 	serviceHost.Run(":8080")
 
+}
+
+func middlewareHandlerLog(c *gin.Context) {
+	fmt.Println("logging the request")
+}
+
+func midllewareHandlerAthentication(c *gin.Context) {
+	if !utility.AuthenticateRequest(c.Request.Header) {
+		c.JSON(http.StatusUnauthorized, gin.H{
+			"Message": "Request unauthorized",
+		})
+		c.Abort()
+		return
+	}
 }

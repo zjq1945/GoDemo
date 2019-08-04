@@ -8,6 +8,9 @@ import (
 func GetMySqlConnectionString() string {
 	var rtn string
 	v := viper.New()
+
+	// to do: get enviroment from os's environment variable
+	//        then set the config name via environment
 	v.SetConfigName("testConfig.development")
 	v.SetConfigType("json")
 	v.AddConfigPath("config")

@@ -11,15 +11,11 @@ import (
 )
 
 func GetResponse() ([]Goods, error) {
-	value, found := utility.GetCache("Jacky")
+	value, found := utility.GetCache("goodsList")
 	if found {
-		fmt.Println("in Get response, found cache ", value)
-	} else {
-		fmt.Println("in Get response, not found cache")
-
-		utility.AddCache("Jacky", "hi there", 5*time.Minute)
+		fmt.Println("hit in cache ")
+		return value.([]Goods), nil
 	}
-
 	response, err := http.Get("http://testapi01.azurewebsites.net/api/hello")
 	if err != nil {
 		fmt.Println("The http request failed with error %s\n", err)
@@ -29,15 +25,16 @@ func GetResponse() ([]Goods, error) {
 		if err != nil {
 			fmt.Println("error read body", err)
 			return nil, err
-		} else {
-			var goodsList []Goods
-			err := json.Unmarshal(body, &goodsList)
-			if err != nil {
-				fmt.Println("error in unmarshal Goods", err)
-				return nil, err
-			} else {
-				return goodsList, nil
-			}
 		}
+		var goodsList []Goods
+		err = json.Unmarshal(body, &goodsList)
+		if err != nil {
+			fmt.Println("error in unmarshal Goods", err)
+			return nil, err
+		}
+		utility.AddCache("goodsList", goodsList, 5*time.Minute)
+		fmt.Println("get by service call")
+		return goodsList, nil
+
 	}
 }

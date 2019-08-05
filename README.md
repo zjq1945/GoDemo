@@ -8,5 +8,5 @@
 - How to consume a Restful Api
 - How to cache (go-cache)
 - How to use middleware, ie. authentication
-- How to read settings in config file (viper)
+- How to read settings from config file (viper)
 - How to do the unit test

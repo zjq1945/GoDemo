@@ -1,4 +1,5 @@
-### Description:
+### Description
+This Demo is used to show how to implement a RESTful service by Go.
 ***
 ### What have been shown in this demo
 - How to do CRUD operations on MySql (mysql)

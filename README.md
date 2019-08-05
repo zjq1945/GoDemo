@@ -16,4 +16,4 @@ This Demo is used to show how to implement a RESTful service by Go
 - /Consumer/Insert                        (POST)
 - /Consumer/Update                        (PUT)
 - /Consumer/Delete                        (DELETE)
-- /Consumer/GetREsponseFromOtherService   (GET)
+- /Consumer/GetResponseFromOtherService   (GET)

@@ -59,7 +59,7 @@ func InsertConsumer(consumer Consumer) error {
 		fmt.Println("error to insert:", err)
 		return err
 	}
-	fmt.Println("done to insert")
+	//fmt.Println("done to insert")
 	return nil
 }
 

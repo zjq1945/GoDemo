@@ -5,11 +5,34 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	//"strings"
+	"bytes"
 	"demo/bizlayer"
 	"demo/utility"
 	"net/http"
 	"time"
 )
+
+type bodyLogWriter struct {
+	gin.ResponseWriter
+	body *bytes.Buffer
+}
+
+func (w bodyLogWriter) Write(b []byte) (int, error) {
+	w.body.Write(b)
+	return w.ResponseWriter.Write(b)
+}
+
+func ginBodyLogMiddleware(c *gin.Context) {
+	fmt.Println("before handler")
+	blw := &bodyLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
+	c.Writer = blw
+	c.Next()
+	fmt.Println("after handler")
+	statusCode := c.Writer.Status()
+	if statusCode >= 400 {
+		fmt.Println("Error code: ", statusCode)
+	}
+}
 
 func StartTest01Services() {
 	serviceHost := gin.Default()
@@ -27,8 +50,9 @@ func StartTest01Services() {
 func StartDemoServices() {
 	serviceHost := gin.Default()
 
-	serviceHost.Use(middlewareHandlerLog)
+	//serviceHost.Use(middlewareHandlerLog)
 	serviceHost.Use(midllewareHandlerAthentication)
+	serviceHost.Use(ginBodyLogMiddleware)
 
 	serviceHost.GET("/Demo/GetTimeNow", func(c *gin.Context) {
 		c.JSON(200, gin.H{

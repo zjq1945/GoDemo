@@ -7,16 +7,13 @@ import (
 	//"demo/db/mssql"
 	//"demo/db/mysql"
 	//"encoding/json"
-	"demo/utility"
+	//"demo/utility"
 	//"github.com/patrickmn/go-cache"
 
 	"fmt"
 )
 
 func main() {
-
-	// initializing environment
-	utility.InitCache()
 
 	////test for consuming a restful api
 	//servicecall.GetResponse()

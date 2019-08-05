@@ -8,7 +8,7 @@ import (
 
 var myCache *cache.Cache
 
-func InitCache() {
+func init() {
 	myCache = cache.New(999*time.Hour, 999*time.Hour)
 }
 

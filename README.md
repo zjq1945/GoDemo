@@ -1,5 +1,4 @@
-### Go Demo
-Description:
+### Description:
 ***
 ### What have been shown in this demo
 - How to do CRUD operation on MySql

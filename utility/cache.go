@@ -9,7 +9,7 @@ import (
 var myCache *cache.Cache
 
 func InitCache() {
-	myCache = cache.New(10*time.Minute, 10*time.Minute)
+	myCache = cache.New(999*time.Hour, 999*time.Hour)
 }
 
 func AddCache(key string, value interface{}, cacheDuration time.Duration) {

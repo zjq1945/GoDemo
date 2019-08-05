@@ -5,24 +5,37 @@ import (
 	"demo/utility"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
+	"time"
 	//"github.com/patrickmn/go-cache"
 )
 
-var conn *connectionStrings
+// var conn *connectionStrings
 
-type connectionStrings struct {
-	dbo string
-}
+// type connectionStrings struct {
+// 	dbo string
+// }
 
 func getDboConnectionString() string {
-	if conn == nil {
-		fmt.Println("conn is nil")
-		conn = &connectionStrings{dbo: utility.GetMySqlConnectionString()}
-		return conn.dbo
+	// if conn == nil {
+	// 	fmt.Println("conn is nil")
+	// 	conn = &connectionStrings{dbo: utility.GetMySqlConnectionString()}
+	// 	return conn.dbo
+	// } else {
+	// 	fmt.Println("conn is not nil")
+	// 	return conn.dbo
+	// }
+
+	con, found := utility.GetCache("ConsumerConnectionString")
+	if found {
+		fmt.Println("found connection string in cache")
+		return con.(string)
 	} else {
-		fmt.Println("conn is not nil")
-		return conn.dbo
+		fmt.Println("not found connection in cache")
+		con = utility.GetMySqlConnectionString()
+		utility.AddCache("ConsumerConnectionString", con, 9999*time.Hour)
+		return con.(string)
 	}
+
 }
 
 func InsertConsumer(consumer Consumer) error {
@@ -115,7 +128,7 @@ func GetConsumers() []Consumer {
 		if err != nil {
 			fmt.Println("error to scan:", err)
 		}
-		fmt.Println(c.ID, c.Name, c.Age, c.Location)
+		//fmt.Println(c.ID, c.Name, c.Age, c.Location)
 		rtn = append(rtn, c)
 
 	}

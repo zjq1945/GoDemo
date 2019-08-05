@@ -103,6 +103,14 @@ func StartDemoServices() {
 
 func middlewareHandlerLog(c *gin.Context) {
 	fmt.Println("logging the request")
+	// rtn, found := utility.GetCache("Jacky")
+	// if found {
+	// 	fmt.Println("found in cache, ", rtn)
+	// } else {
+	// 	fmt.Println("not found")
+	// 	utility.AddCache("Jacky", "hello")
+	// }
+
 }
 
 func midllewareHandlerAthentication(c *gin.Context) {

@@ -1,14 +1,25 @@
 package servicecall
 
 import (
+	"demo/utility"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 func GetResponse() ([]Goods, error) {
+	value, found := utility.GetCache("Jacky")
+	if found {
+		fmt.Println("in Get response, found cache ", value)
+	} else {
+		fmt.Println("in Get response, not found cache")
+
+		utility.AddCache("Jacky", "hi there", 5*time.Minute)
+	}
+
 	response, err := http.Get("http://testapi01.azurewebsites.net/api/hello")
 	if err != nil {
 		fmt.Println("The http request failed with error %s\n", err)

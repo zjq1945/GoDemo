@@ -2,9 +2,9 @@
 
 
 ### What have been shown in this demo
-- CRUD operation on MySql
-- CRUD operation on Rest Api (Gin) 
-- Use GORM for data access layer to MySql
+- How to do CRUD operation on MySql
+- How to do CRUD operation on Rest Api (Gin) 
+- How to use GORM for data access layer to MySql
 - How to consume a Restful Api
 - How to cache
 - How to use middleware, ie. authentication

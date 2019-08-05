@@ -4,7 +4,7 @@ This Demo is used to show how to implement a RESTful service by Go
 - How to do CRUD operations on MySql (mysql)
 - How to do CRUD operations on MsSql (go-mssqldb)
 - How to do CRUD operations on Rest Api (Gin) 
-- How to use GORM for data access layer to MySql (gorm)
+- How to use GORM as data access layer to MySql (gorm)
 - How to consume a Restful Api
 - How to cache data (go-cache)
 - How to use middleware to do some customized things ie. logging, authentication, caching response body

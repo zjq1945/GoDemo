@@ -5,7 +5,6 @@ import (
 	"demo/utility"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"time"
 	//"github.com/patrickmn/go-cache"
 )
 
@@ -15,32 +14,15 @@ import (
 // 	dbo string
 // }
 
+var consumerConnectionString = getDboConnectionString()
+
 func getDboConnectionString() string {
-	// if conn == nil {
-	// 	fmt.Println("conn is nil")
-	// 	conn = &connectionStrings{dbo: utility.GetMySqlConnectionString()}
-	// 	return conn.dbo
-	// } else {
-	// 	fmt.Println("conn is not nil")
-	// 	return conn.dbo
-	// }
-
-	con, found := utility.GetCache("ConsumerConnectionString")
-	if found {
-		fmt.Println("found connection string in cache")
-		return con.(string)
-	} else {
-		fmt.Println("not found connection in cache")
-		con = utility.GetMySqlConnectionString()
-		utility.AddCache("ConsumerConnectionString", con, 9999*time.Hour)
-		return con.(string)
-	}
-
+	return utility.GetMySqlConnectionString()
 }
 
 func InsertConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", getDboConnectionString())
+	db, err := sql.Open("mysql", consumerConnectionString)
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -65,7 +47,7 @@ func InsertConsumer(consumer Consumer) error {
 
 func UpdateConsumer(consumer Consumer) error {
 
-	db, err := sql.Open("mysql", getDboConnectionString())
+	db, err := sql.Open("mysql", consumerConnectionString)
 	if err != nil {
 		fmt.Println("error to open:", err)
 		return err
@@ -90,7 +72,7 @@ func UpdateConsumer(consumer Consumer) error {
 
 func DeleteConsumer(consumerName string) {
 
-	db, err := sql.Open("mysql", getDboConnectionString())
+	db, err := sql.Open("mysql", consumerConnectionString)
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -110,7 +92,7 @@ func DeleteConsumer(consumerName string) {
 }
 
 func GetConsumers() []Consumer {
-	db, err := sql.Open("mysql", getDboConnectionString())
+	db, err := sql.Open("mysql", consumerConnectionString)
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}
@@ -137,7 +119,7 @@ func GetConsumers() []Consumer {
 }
 
 func GetConsumer(consumerName string) (Consumer, bool) {
-	db, err := sql.Open("mysql", getDboConnectionString())
+	db, err := sql.Open("mysql", consumerConnectionString)
 	if err != nil {
 		fmt.Println("error to open:", err)
 	}

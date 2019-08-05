@@ -33,7 +33,7 @@ func GetResponse() ([]Goods, error) {
 			return nil, err
 		}
 		utility.AddCache("goodsList", goodsList, 5*time.Minute)
-		fmt.Println("get by service call")
+		fmt.Println("get list via service call")
 		return goodsList, nil
 
 	}

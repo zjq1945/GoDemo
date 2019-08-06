@@ -10,7 +10,7 @@ This Demo is used to show how to implement a RESTful service by Go
 - How to use middleware to do some customized things ie. logging, authenticating, caching response body
 - How to read settings from config file (viper)
 - How to do the unit test
-### Following APIs have created for this demo
+### Following APIs have been created for this demo
 - /Consumer/Get                           (GET)
 - /Consumer/Insert                        (POST)
 - /Consumer/Update                        (PUT)

@@ -60,7 +60,7 @@ func StartDemoServices() {
 		})
 	})
 
-	serviceHost.GET("/Consumer/GetAll", func(c *gin.Context) {
+	serviceHost.GET("/Consumer/Get", func(c *gin.Context) {
 		consumers := consumer.GetAll()
 		c.JSON(200, consumers)
 	})

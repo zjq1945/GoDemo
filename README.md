@@ -11,8 +11,7 @@ This Demo is used to show how to implement a RESTful service by Go
 - How to read settings from config file (viper)
 - How to do the unit test
 ### Following APIs have created for this demo
-- /Consumer/GetAll                        (GET)
-- /Consumer/Get/ConsumerName              (GET)
+- /Consumer/Get                           (GET)
 - /Consumer/Insert                        (POST)
 - /Consumer/Update                        (PUT)
 - /Consumer/Delete                        (DELETE)

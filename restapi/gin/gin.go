@@ -18,20 +18,19 @@ type bodyLogWriter struct {
 }
 
 func (w bodyLogWriter) Write(b []byte) (int, error) {
+
+	fmt.Println("Content in the body, and we can do something to it, ie. caching or converting: ", string(b))
 	w.body.Write(b)
 	return w.ResponseWriter.Write(b)
 }
 
 func ginBodyLogMiddleware(c *gin.Context) {
-	fmt.Println("before handler")
+	//fmt.Println("before handler")
 	blw := &bodyLogWriter{body: bytes.NewBufferString(""), ResponseWriter: c.Writer}
 	c.Writer = blw
 	c.Next()
-	fmt.Println("after handler")
-	statusCode := c.Writer.Status()
-	if statusCode >= 400 {
-		fmt.Println("Error code: ", statusCode)
-	}
+	//fmt.Println("after handler")
+
 }
 
 func StartTest01Services() {
